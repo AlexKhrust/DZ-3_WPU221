@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
@@ -78,7 +80,78 @@ namespace DZ_3_WPU221
         }
     }
 
+    class TES : Human
+    {
+        private string _guild = "Warriors";
+        private string _skill = "Two-handed weapon";
 
+        public TES() { }
+        public TES (string firstName, string lastName, int age, string guild, string skill) : base(firstName, lastName, age)
+        {
+            _guild = guild;
+            _skill = skill;
+        }
+
+        public new void Print()
+        {
+            WriteLine($"Имя: {_firstName}\nФамилия: {_lastName}\nВозраст: {_age}\nГильдия: {_guild}\nГлавный навык: {_skill}\n");
+        }
+
+        public override string ToString()
+        {
+            return _firstName + " " + _lastName + " член гильдии  " + _guild + " с главным навыком " + _skill;
+        }
+    }
+
+    class Concord : Human
+    {
+        private string _status = "Pirate";
+        private string _shipName = "Dumbfounded";
+
+        public Concord() { }
+        public Concord (string firstName, string lastName, int age, string status, string shipName) : base(firstName, lastName, age)
+        {
+            _status = status;
+            _shipName = shipName;
+        }
+
+        public new void Print()
+        {
+            WriteLine($"Имя: {_firstName}\nФамилия: {_lastName}\nВозраст: {_age}\nСтатус: {_status}\nИмя корабля: {_shipName}\n");
+        }
+
+        public override string ToString()
+        {
+            return _status + " " + _firstName + " " + _lastName + " капитан корабля  " + _shipName;
+        }
+    }
+
+    class OurReality : Human
+    {
+        private string _country = "Russia";
+        private string _activity = "Student";
+        private string _religion = "Pasta monster";
+
+        public OurReality() { }
+        public OurReality(string firstName, string lastName, int age, string country, string activity, string religion) : base(firstName, lastName, age)
+        {
+            _country = country;
+            _activity = activity;
+            _religion = religion;
+
+        }
+
+        public new void Print()
+        {
+            WriteLine($"Имя: {_firstName}\nФамилия: {_lastName}\nВозраст: {_age}\nСтрана: {_country}\nВид деятельности: {_activity}\nРелигия: {_religion}\n");
+        }
+
+        public override string ToString()
+        {
+            return _activity + " " + _firstName + " " + _lastName + " проживает в " + _country + " верит в " + _religion;
+        }
+
+    }
 
     internal class Human1
     {
@@ -87,7 +160,7 @@ namespace DZ_3_WPU221
             Human human1 = new Human("Stive", "Jobs", 23); //проверка базового класса
             human1.Print();
             string Test1 = human1.ToString(); //проверка переопределенного метода ToString() базового класса
-            WriteLine(Test1+"\n");
+            WriteLine(Test1 + "\n");
 
             Warhammer human2 = new Warhammer("Victim", "Darius", 59, "The imperium of humanity", "Emperor");
             human2.Print();
@@ -99,7 +172,20 @@ namespace DZ_3_WPU221
             string Test3 = notHuman.ToString();
             WriteLine(Test3 + "\n");
 
+            TES danmer = new TES("Algus", "Septim", 41, "Guild of magicians", "Destruction");
+            danmer.Print();
+            string Test4 = danmer.ToString(); //проверка переопределенного метода ToString() производного класса
+            WriteLine(Test4 + "\n");
 
+            Concord citizen = new Concord("Jon", "Kampble", 68, "Trader", "Barracuda");
+            citizen.Print();
+            string Test5 = citizen.ToString(); //проверка переопределенного метода ToString() производного класса
+            WriteLine(Test5 + "\n");
+
+            OurReality man = new OurReality();
+            man.Print();
+            string Test6 = man.ToString(); //проверка переопределенного метода ToString() производного класса
+            WriteLine(Test6 + "\n");
         }
     }
 }
